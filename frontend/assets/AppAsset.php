@@ -2,6 +2,8 @@
 
 namespace frontend\assets;
 
+use rmrevin\yii\fontawesome\CdnProAssetBundle;
+use rmrevin\yii\fontawesome\FontAwesome;
 use yii\web\AssetBundle;
 
 /**
@@ -19,5 +21,6 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap5\BootstrapAsset',
+        CdnProAssetBundle::class
     ];
 }
