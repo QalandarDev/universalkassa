@@ -1,12 +1,14 @@
 <?php
 
 use app\models\Order;
+use yii\bootstrap5\LinkPager;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 
+/** @var Order $model */
 /** @var yii\web\View $this */
 /** @var frontend\models\OrderSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
@@ -24,8 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
-                'pager'=>[
-                    'class'=>\yii\bootstrap5\LinkPager::class,
+                'pager' => [
+                    'class' => LinkPager::class,
                 ],
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
@@ -35,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'total',
                         'value' => function (Order $model) {
-                            if($model->total) {
+                            if ($model->total) {
                                 return Yii::$app->formatter->asCurrency($model->total, 'UZS', [
                                     NumberFormatter::MIN_FRACTION_DIGITS => 0,
                                     NumberFormatter::MAX_FRACTION_DIGITS => 0,
@@ -44,18 +46,21 @@ $this->params['breadcrumbs'][] = $this->title;
                             return '';
                         }
                     ],
-                    //'sale',
-                    //'total',
-                    //'status',
                     'phone',
-                    //'comment',
-                    'created_at:date',
-                    //'updated_at',
+                    [
+                        'attribute' => 'created_at',
+                        'value'=>function(Order $model){
+                            return $model->created_at;
+                        },
+                        'format' => 'datetime',
+                        'filter' => false,
+                    ],
                     [
                         'class' => ActionColumn::className(),
                         'urlCreator' => function ($action, Order $model, $key, $index, $column) {
                             return Url::toRoute([$action, 'id' => $model->id]);
-                        }
+                        },
+                        'template' => '{view}'
                     ],
                 ],
             ]); ?>

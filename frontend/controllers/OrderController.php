@@ -46,8 +46,6 @@ class OrderController extends Controller
 
             if ($model->load($this->request->post())) {
                 $model->sale=(int)$model->sale*10;
-                $model->total=(int)$model->total;
-                $model->price=($model->total*(1000-$model->sale))/1000;
                 if($model->save()) {
                     return $this->redirect(['index']);
                 }else{

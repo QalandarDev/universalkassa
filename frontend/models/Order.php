@@ -48,7 +48,7 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ticket_id', 'user', 'direction',  'sale', 'total', 'status', 'phone', 'comment'], 'required'],
+            [['user', 'direction',  'sale', 'total', 'status', 'phone', 'comment'], 'required'],
             [['price', 'sale', 'total', 'created_at', 'updated_at'], 'default', 'value' => null],
 
             [['ticket_id', 'user', 'direction', 'status', 'phone', 'comment'], 'string', 'max' => 255],
@@ -65,9 +65,9 @@ class Order extends \yii\db\ActiveRecord
             'ticket_id' => 'Bilet N:',
             'user' => 'FIO',
             'direction' => 'Uchish yo\'nalishi',
-            'price' => 'Narxi',
+            'price' => 'Tan narxi',
             'sale' => 'Chegirma',
-            'total' => 'Jami',
+            'total' => 'Sotuv baxosi',
             'status' => 'To\'lov turi',
             'phone' => 'Telefon raqam',
             'comment' => 'Qo\'shimcha ma\'lumot',
